@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-16T13:49:07-05:00",
+  "updatedAt": "2026-08-16T13:52:50-05:00",
   "windowDays": 14,
   "events": [
     {
@@ -19,12 +19,12 @@
       "confidence": "主办方已核对"
     },
     {
-      "title": "Prairie Flower Parent-Child Playgroup",
-      "when": "9 月起 · 固定课程，具体日期与报名待确认",
+      "title": "Little Song Parent-Child Club",
+      "when": "秋季学期 · 12 次每周课程；本期时间与报名待确认",
       "location": "Bethesda Lutheran Church · Ames",
-      "url": "https://www.prairieflowercc.org/",
+      "url": "https://www.prairieflowercc.org/parent-child-club.html",
       "source": "Prairie Flower",
-      "confidence": "需要提前报名 · 14 个月–3 岁"
+      "confidence": "需要提前报名 · 15 个月–3 岁 · $15/次"
     }
   ],
   "sources": [
