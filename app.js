@@ -21,6 +21,7 @@ let selectedPrice = 'any';
 let rotation = 0;
 const recommendationLimit = 5;
 let libraryEvents = [];
+let specialEvents = [];
 
 const weatherCodeText = {
   0: ['☀️', '晴朗'], 1: ['🌤️', '大致晴朗'], 2: ['⛅', '局部多云'], 3: ['☁️', '阴天'],
@@ -85,6 +86,20 @@ async function loadLibraryCalendar() {
     libraryEvents = [];
   }
   render();
+}
+
+function renderSpecialEvents() {
+  const list = el('specialEventList');
+  list.innerHTML = specialEvents.length ? specialEvents.slice(0, 4).map(event => `<article class="special-event"><p class="eyebrow">${event.source} · ${event.confidence}</p><h3>${event.title}</h3><p>${event.when}${event.location ? ` · ${event.location}` : ''}</p><a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`).join('') : '<p class="special-empty">本周尚未找到适合 toddler 的特别活动。可以查看全部来源，或稍后再刷新。</p>';
+}
+
+async function loadSpecialEvents() {
+  try {
+    const response = await fetch('data/special-events.json', { cache: 'no-store' });
+    const data = await response.json();
+    specialEvents = Array.isArray(data.events) ? data.events : [];
+  } catch { specialEvents = []; }
+  renderSpecialEvents();
 }
 
 function firstMondayOfSeptember(year) {
@@ -155,3 +170,4 @@ el('refreshChoicesBottom').addEventListener('click', () => { rotation += recomme
 render();
 loadWeather();
 loadLibraryCalendar();
+loadSpecialEvents();

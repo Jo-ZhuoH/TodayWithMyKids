@@ -16,6 +16,18 @@ h2 { margin:0; font-size:1.35rem; letter-spacing:-.025em; }
 .hourly-slot time { display:block; font-size:.7rem; font-weight:800; }
 .hourly-slot strong { display:block; font-size:.88rem; margin:3px 0; }
 .hourly-slot span { display:block; font-size:.68rem; }
+.special-events { border-top:1px solid var(--line); margin-top:30px; padding-top:24px; }
+.special-heading { align-items:center; display:flex; justify-content:space-between; gap:12px; }
+.special-heading h2 { font-size:1.28rem; }
+.special-heading .eyebrow { margin:0 0 4px; }
+.special-heading a { color:#59715e; font-size:.86rem; font-weight:800; white-space:nowrap; }
+.special-intro, .source-note { color:var(--muted); font-size:.86rem; line-height:1.45; }
+.special-event-list { display:grid; gap:10px; margin-top:12px; }
+.special-event { background:#fff7dc; border:1px solid #eadcae; border-radius:15px; padding:14px; }
+.special-event h3 { font-size:1.03rem; margin:3px 0 6px; }
+.special-event p { color:var(--muted); font-size:.88rem; line-height:1.45; margin:0; }
+.special-event a { color:#7a5b21; display:inline-block; font-size:.86rem; font-weight:800; margin-top:9px; }
+.special-empty { background:#f5f6f1; border-radius:14px; color:var(--muted); font-size:.9rem; line-height:1.5; padding:14px; }
 .filters { display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; border-bottom:1px solid var(--line); padding-bottom:26px; }
 label, .place-toggle, .price-toggle { color:var(--muted); display:grid; font-size:.78rem; font-weight:700; gap:6px; }
 select { appearance:none; background:var(--card); border:1px solid var(--line); border-radius:10px; color:var(--ink); font:inherit; padding:10px; }

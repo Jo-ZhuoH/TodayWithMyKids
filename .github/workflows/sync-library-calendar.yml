@@ -18,14 +18,16 @@ jobs:
           python-version: "3.11"
       - name: Read today's Ames Public Library events
         run: python scripts/sync_library_calendar.py
+      - name: Read upcoming community events
+        run: python scripts/sync_special_events.py
       - name: Commit refreshed event data
         run: |
-          if git diff --quiet -- data/library-events.json; then
+          if git diff --quiet -- data/library-events.json data/special-events.json; then
             echo "No calendar changes to publish."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/library-events.json
-          git commit -m "Sync library calendar"
+          git add data/library-events.json data/special-events.json
+          git commit -m "Sync activity calendars"
           git push

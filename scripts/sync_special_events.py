@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+"""Collect cautious family-event leads from the three public local calendars."""
+from __future__ import annotations
+
+import html
+import json
+import re
+from datetime import datetime, timedelta
+from pathlib import Path
+from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
+
+OUT = Path(__file__).resolve().parents[1] / "data" / "special-events.json"
+KEYWORDS = re.compile(r"toddler|child|children|kid|family|playdate|fair|festival|farmers.? market|heritage|cultural", re.I)
+EXCLUDE = re.compile(r"adult|senior|board meeting|commission meeting|camp|veterans", re.I)
+
+def get(url: str) -> str:
+    with urlopen(Request(url, headers={"User-Agent": "TodayWithMyKids/1.0"}), timeout=30) as response:
+        return response.read().decode("utf-8")
+
+def clean(value: str) -> str:
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", value))).strip()
+
+def discover_events(page: str) -> list[dict[str, str]]:
+    events = []
+    today = datetime.now(ZoneInfo("America/Chicago")).date()
+    for article in re.findall(r"<article class=\"mec-event-article.*?</article>", page, re.S):
+        link = re.search(r"mec-event-title.*?href=\"([^\"]+)\"[^>]*>(.*?)</a>", article, re.S)
+        if not link:
+            continue
+        title = clean(link.group(2))
+        description = clean((re.search(r"mec-event-description\">(.*?)</div>", article, re.S) or [None, ""])[1])
+        if EXCLUDE.search(f"{title} {description}") or not KEYWORDS.search(f"{title} {description}"):
+            continue
+        date = clean((re.search(r"mec-start-date-label\">(.*?)</span>", article, re.S) or [None, ""])[1])
+        try:
+            event_date = datetime.strptime(f"{date} {today.year}", "%d %b %Y").date()
+        except ValueError:
+            continue
+        if not today <= event_date <= today + timedelta(days=14):
+            continue
+        time = clean((re.search(r"mec-time-details.*?</svg>(.*?)</div>", article, re.S) or [None, ""])[1])
+        venue = clean((re.search(r"mec-venue-details.*?<span>(.*?)</span>", article, re.S) or [None, ""])[1])
+        events.append({"title": title, "when": f"{date} {time}".strip(), "location": venue, "url": link.group(1), "source": "Discover Ames", "confidence": "亲子线索 · 请核对"})
+    return events
+
+def story_county_events(page: str) -> list[dict[str, str]]:
+    events = []
+    for block in re.findall(r"<div id=\"parentdiv.*?(?=<div id=\"parentdiv|</table>)", page, re.S):
+        title = re.search(r"<h3[^>]*>(.*?)</h3>", block, re.S)
+        link = re.search(r"href=\"(/Calendar\.aspx\?EID=[^\"]+)", block)
+        date = re.search(r"<div class=\"date\">(.*?)</div>", block, re.S)
+        if not title or not link or not date:
+            continue
+        title_text = clean(title.group(1))
+        if EXCLUDE.search(title_text) or not KEYWORDS.search(title_text):
+            continue
+        location = clean((re.search(r"eventLocation.*?<div class=\"name\">(.*?)</div>", block, re.S) or [None, ""])[1])
+        events.append({"title": title_text, "when": clean(date.group(1)), "location": location, "url": "https://www.storycountyiowa.gov" + html.unescape(link.group(1)), "source": "Story County", "confidence": "亲子线索 · 请核对"})
+    return events
+
+def main() -> None:
+    discover = discover_events(get("https://discoverames.com/events/"))
+    story = story_county_events(get("https://www.storycountyiowa.gov/Calendar.aspx"))
+    # Ames Parks & Recreation is an official source, but currently rejects automated reads
+    # and does not expose a stable public event-list feed. Keep it in the UI source list
+    # without allowing that limitation to block the other two calendars.
+    unique = {f"{e['source']}|{e['title']}|{e['when']}": e for e in discover + story}
+    OUT.write_text(json.dumps({"updatedAt": datetime.now(ZoneInfo("America/Chicago")).isoformat(timespec="seconds"), "windowDays": 14, "events": list(unique.values()), "sources": ["Discover Ames", "Story County", "Ames Parks & Recreation"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Synced {len(unique)} community event leads.")
+
+if __name__ == "__main__":
+    main()

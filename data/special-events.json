@@ -1,0 +1,27 @@
+{
+  "updatedAt": "2026-08-16T13:33:59-05:00",
+  "windowDays": 14,
+  "events": [
+    {
+      "title": "Nature Playdates",
+      "when": "August 25, 2026, 10:00 AM - 11:30 AM",
+      "location": "Peterson Park West",
+      "url": "https://www.storycountyiowa.gov/Calendar.aspx?EID=3550&month=8&year=2026&day=25&calType=0",
+      "source": "Story County",
+      "confidence": "亲子线索 · 请核对"
+    },
+    {
+      "title": "Nature Playdates",
+      "when": "August 25, 2026, 10:00 AM - 11:00 AM",
+      "location": "McFarland Park",
+      "url": "https://www.storycountyiowa.gov/Calendar.aspx?EID=3490&month=8&year=2026&day=25&calType=0",
+      "source": "Story County",
+      "confidence": "亲子线索 · 请核对"
+    }
+  ],
+  "sources": [
+    "Discover Ames",
+    "Story County",
+    "Ames Parks & Recreation"
+  ]
+}
