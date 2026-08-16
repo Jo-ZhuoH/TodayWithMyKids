@@ -1,5 +1,5 @@
 const activities = [
-  { name: 'Toddler Storytime', type: '图书馆活动 · 今日推荐', category: 'library', drive: 7, place: 'indoor', free: true, featured: true, age: '幼儿友好', needsConfirmation: true, water: '待核实', note: '音乐、故事和互动游戏；出发前请核对当天时间。', url: 'https://www.amespubliclibrary.org/events/list' },
+  { name: 'Toddler Storytime', type: '图书馆活动 · 今日推荐', category: 'library', drive: 7, place: 'indoor', free: true, featured: true, age: '幼儿友好', availability: 'calendarRequired', needsConfirmation: true, water: '待核实', note: '此活动仅在官方日历确认当天有场次时显示。', url: 'https://www.amespubliclibrary.org/events/list' },
   { name: 'Ames Public Library 儿童区', type: '安静室内备选', category: 'library', drive: 7, place: 'indoor', free: true, age: '0–3 岁友好', water: '待核实', note: '没有固定活动时也可读书、活动身体，是下雨天的低成本备选。', url: 'https://www.amespubliclibrary.org/' },
   { name: 'Labyrinth Coffee', type: '咖啡 + 儿童玩耍区', category: 'play', drive: 10, place: 'indoor', free: false, age: '低龄友好', water: '待核实', note: '有家长推荐的儿童玩耍区、玩具和 Lego；出发前核对当天开放时间。', url: 'https://www.labyrinthcoffeeames.org/' },
   { name: 'Play Pals Indoor Playground', type: '低龄室内玩耍', category: 'play', drive: 10, place: 'indoor', free: false, age: '5 岁及以下', needsConfirmation: true, water: '待核实', availability: 'schoolYearWeekdayMorning', note: 'Community Center 的玩具、滑梯和骑乘玩具；仅在 Labor Day 到 Memorial Day 之间的周一至周五 9–11 点显示。', url: 'https://www.cityofames.org/My-Government/Departments/Parks-and-Recreation/Facilities/Community-Center' },
@@ -19,6 +19,8 @@ const el = (id) => document.getElementById(id);
 let selectedPlace = 'any';
 let selectedPrice = 'any';
 let rotation = 0;
+const recommendationLimit = 5;
+let libraryEvents = [];
 
 const weatherCodeText = {
   0: ['☀️', '晴朗'], 1: ['🌤️', '大致晴朗'], 2: ['⛅', '局部多云'], 3: ['☁️', '阴天'],
@@ -41,7 +43,7 @@ function directionsUrl(activity) {
 }
 
 async function loadWeather() {
-  const url = 'https://api.open-meteo.com/v1/forecast?latitude=42.0347&longitude=-93.62&current=temperature_2m,weather_code,wind_speed_10m&hourly=precipitation_probability,wind_speed_10m&daily=uv_index_max&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FChicago&forecast_days=1';
+  const url = 'https://api.open-meteo.com/v1/forecast?latitude=42.0347&longitude=-93.62&current=temperature_2m,weather_code,wind_speed_10m&hourly=temperature_2m,precipitation_probability,weather_code,wind_speed_10m&daily=uv_index_max&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FChicago&forecast_days=1';
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error('weather unavailable');
@@ -49,17 +51,40 @@ async function loadWeather() {
     const [icon, description] = weatherCodeText[data.current.weather_code] || ['🌤️', '当前天气'];
     const alerts = [];
     const now = new Date();
-    const upcomingRain = data.hourly.time.findIndex((time, index) => new Date(time) >= now && data.hourly.precipitation_probability[index] >= 40);
-    if (upcomingRain >= 0) alerts.push(`${formatHour(data.hourly.time[upcomingRain])} 降雨可能 ${data.hourly.precipitation_probability[upcomingRain]}%`);
+    const firstUpcomingHour = Math.max(0, data.hourly.time.findIndex(time => new Date(time) >= now));
+    const nextHours = data.hourly.time.slice(firstUpcomingHour, firstUpcomingHour + 5);
+    const upcomingRain = nextHours.findIndex((time, index) => data.hourly.precipitation_probability[firstUpcomingHour + index] >= 40);
+    if (upcomingRain >= 0) {
+      const rainIndex = firstUpcomingHour + upcomingRain;
+      alerts.push(`${formatHour(data.hourly.time[rainIndex])} 降雨可能 ${data.hourly.precipitation_probability[rainIndex]}%`);
+    }
     if (data.current.wind_speed_10m >= 20) alerts.push(`风速 ${Math.round(data.current.wind_speed_10m)} mph，户外注意风大`);
     if (data.daily.uv_index_max[0] >= 6) alerts.push(`紫外线 ${Math.round(data.daily.uv_index_max[0])}，建议涂防晒`);
     el('weatherIcon').textContent = icon;
     el('weatherHeadline').textContent = `Ames · ${Math.round(data.current.temperature_2m)}°F · ${description}`;
     el('weatherAlerts').textContent = alerts.join(' · ');
     el('weatherAlerts').hidden = alerts.length === 0;
+    el('hourlyWeather').innerHTML = nextHours.map((time, index) => {
+      const hourIndex = firstUpcomingHour + index;
+      const [hourIcon] = weatherCodeText[data.hourly.weather_code[hourIndex]] || ['🌤️'];
+      return `<div class="hourly-slot"><time>${formatHour(time)}</time><strong>${hourIcon} ${Math.round(data.hourly.temperature_2m[hourIndex])}°</strong><span>雨 ${data.hourly.precipitation_probability[hourIndex]}%</span></div>`;
+    }).join('');
   } catch {
     el('weatherHeadline').textContent = '天气暂时无法读取';
   }
+}
+
+async function loadLibraryCalendar() {
+  try {
+    const response = await fetch('data/library-events.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('calendar unavailable');
+    const data = await response.json();
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Chicago' });
+    libraryEvents = data.date === today && Array.isArray(data.events) ? data.events : [];
+  } catch {
+    libraryEvents = [];
+  }
+  render();
 }
 
 function firstMondayOfSeptember(year) {
@@ -75,6 +100,7 @@ function lastMondayOfMay(year) {
 }
 
 function isAvailableToday(activity, now = new Date()) {
+  if (activity.availability === 'calendarRequired') return libraryEvents.some(event => event.name === activity.name);
   if (activity.availability !== 'schoolYearWeekdayMorning') return true;
   const laborDay = firstMondayOfSeptember(now.getFullYear());
   const memorialDay = lastMondayOfMay(now.getFullYear());
@@ -88,7 +114,7 @@ function spreadCategories(items) {
   const remaining = [...items];
   const result = [];
   const used = new Set();
-  while (remaining.length && result.length < 3) {
+  while (remaining.length && result.length < recommendationLimit) {
     const index = remaining.findIndex(item => !used.has(item.category));
     const next = remaining.splice(index === -1 ? 0 : index, 1)[0];
     result.push(next);
@@ -102,7 +128,7 @@ function render() {
   const matches = activities.filter(a => isAvailableToday(a) && a.drive <= maxDrive && (selectedPlace === 'any' || a.place === selectedPlace) && (selectedPrice === 'any' || a.free));
   const rotated = matches.length ? [...matches.slice(rotation % matches.length), ...matches.slice(0, rotation % matches.length)] : [];
   const shown = spreadCategories(rotated);
-  el('resultCount').textContent = matches.length > 3 ? `今天先给你 3 个建议 · 还有 ${matches.length - 3} 个可换` : `今天为你找到 ${matches.length} 个建议`;
+  el('resultCount').textContent = matches.length > recommendationLimit ? `今天先给你 ${recommendationLimit} 个建议 · 还有 ${matches.length - recommendationLimit} 个可换` : `今天为你找到 ${matches.length} 个建议`;
   el('activityList').innerHTML = shown.length ? shown.map(a => `
     <article class="activity ${a.place}${a.featured ? ' featured' : ''}">
       <div class="topline"><div><p class="eyebrow">${a.type}${a.splash ? ` · ${a.splash}` : ''}</p><h3>${a.name}</h3></div></div>
@@ -124,7 +150,8 @@ document.querySelectorAll('.price-button').forEach(button => button.addEventList
   document.querySelectorAll('.price-button').forEach(item => item.classList.toggle('active', item === button));
   render();
 }));
-el('refreshChoices').addEventListener('click', () => { rotation += 3; render(); });
-el('refreshChoicesBottom').addEventListener('click', () => { rotation += 3; render(); });
+el('refreshChoices').addEventListener('click', () => { rotation += recommendationLimit; render(); });
+el('refreshChoicesBottom').addEventListener('click', () => { rotation += recommendationLimit; render(); });
 render();
 loadWeather();
+loadLibraryCalendar();
