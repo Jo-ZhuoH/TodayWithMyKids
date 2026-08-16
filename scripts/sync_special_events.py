@@ -59,9 +59,24 @@ def story_county_events(page: str) -> list[dict[str, str]]:
         events.append({"title": title_text, "when": clean(date.group(1)), "location": location, "url": "https://www.storycountyiowa.gov" + html.unescape(link.group(1)), "source": "Story County", "confidence": "亲子线索 · 请核对"})
     return events
 
+def canonicalize_story_event(event: dict[str, str]) -> dict[str, str]:
+    """Prefer MyCountyParks details when Story County links to the same event."""
+    try:
+        detail = get(event["url"])
+        external = re.search(r'href="(https://www\.mycountyparks\.com/[^"]+)', detail)
+        if not external:
+            return event
+        page = get(html.unescape(external.group(1)))
+        title = clean((re.search(r"<h1>(.*?)</h1>", page, re.S) or [None, event["title"]])[1])
+        date = clean((re.search(r'<p class="date">(.*?)</p>', page, re.S) or [None, event["when"]])[1])
+        location = clean((re.search(r'fa-location-dot.*?</i>\s*<a[^>]*>(.*?)</a>', page, re.S) or [None, event["location"]])[1])
+        return {**event, "title": title, "when": date, "location": location, "url": html.unescape(external.group(1)), "confidence": "主办方已核对"}
+    except Exception:
+        return event
+
 def main() -> None:
     discover = discover_events(get("https://discoverames.com/events/"))
-    story = story_county_events(get("https://www.storycountyiowa.gov/Calendar.aspx"))
+    story = [canonicalize_story_event(event) for event in story_county_events(get("https://www.storycountyiowa.gov/Calendar.aspx"))]
     # Ames Parks & Recreation is an official source, but currently rejects automated reads
     # and does not expose a stable public event-list feed. Keep it in the UI source list
     # without allowing that limitation to block the other two calendars.
