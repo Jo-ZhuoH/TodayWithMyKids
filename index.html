@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Today With My Kids · Ames</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <h1>在 Ames, Iowa，今天带孩子去哪？</h1>
+        <p class="subtitle summary-line">给 <select id="ageFilter" aria-label="孩子年龄段"><option value="baby">baby</option><option value="toddler" selected>toddler</option><option value="preschool">3–5 岁</option></select> 的今天活动建议，先看 <select id="driveFilter" aria-label="最多车程"><option value="10">10 分钟</option><option value="15" selected>15 分钟</option><option value="30">30 分钟</option></select> 车程内的选择。</p>
+      </header>
+
+      <section class="weather-card" aria-label="天气提示示例">
+        <span id="weatherIcon" class="weather-icon">☁</span>
+        <div>
+          <strong id="weatherHeadline">正在读取 Ames 天气…</strong>
+          <p id="weatherAlerts" hidden></p>
+        </div>
+      </section>
+
+      <section class="filters" aria-label="活动筛选">
+        <div class="place-toggle" role="group" aria-label="场所筛选">
+          <span>场所</span>
+          <div class="segmented">
+            <button class="place-button active" data-place="any" type="button">全部</button>
+            <button class="place-button" data-place="indoor" type="button">室内</button>
+            <button class="place-button" data-place="outdoor" type="button">室外</button>
+          </div>
+        </div>
+        <div class="price-toggle" role="group" aria-label="费用筛选">
+          <span>费用</span>
+          <div class="segmented">
+            <button class="price-button active" data-price="any" type="button">全部</button>
+            <button class="price-button" data-price="free" type="button">免费</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR SHORTLIST</p>
+          <h2>适合你们的选择</h2>
+        </div>
+        <button id="refreshChoices" class="refresh" type="button">换一批 ↻</button>
+      </section>
+      <p id="resultCount" class="count">今天先给你 3 个建议</p>
+      <section id="activityList" class="activity-list" aria-live="polite"></section>
+      <button id="refreshChoicesBottom" class="refresh-bottom" type="button">换一批建议 ↻</button>
+
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

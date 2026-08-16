@@ -1,0 +1,41 @@
+:root { --ink:#1f2a24; --muted:#647168; --paper:#f8f7f2; --card:#fffdf8; --sage:#dce9dd; --accent:#d9664b; --line:#e5e2d9; }
+* { box-sizing:border-box; }
+body { margin:0; color:var(--ink); background:var(--paper); font-family: ui-rounded, "SF Pro Rounded", "PingFang SC", system-ui, sans-serif; }
+.shell { width:min(760px, calc(100% - 32px)); margin:0 auto; padding:48px 0 64px; }
+header { margin-bottom:28px; }
+.eyebrow { color:#708273; font-size:.74rem; font-weight:800; letter-spacing:.11em; margin:0 0 8px; }
+h1 { font-size:clamp(1.95rem, 6vw, 3rem); letter-spacing:-.045em; line-height:1.1; margin:0; }
+h2 { margin:0; font-size:1.35rem; letter-spacing:-.025em; }
+.subtitle { color:var(--muted); line-height:1.55; margin:14px 0 0; max-width:560px; }
+.summary-line select { appearance:none; background:transparent; border:0; border-bottom:1px solid #9ba99c; border-radius:0; color:var(--ink); cursor:pointer; font:inherit; font-weight:750; min-width:88px; padding:0 20px 2px 4px; }
+.weather-card { background:#e8eff0; border-radius:18px; display:flex; gap:14px; padding:16px; margin-bottom:20px; }
+.weather-card p { color:#52636a; font-size:.9rem; margin:4px 0 0; line-height:1.4; }
+.weather-icon { font-size:2rem; }
+.filters { display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; border-bottom:1px solid var(--line); padding-bottom:26px; }
+label, .place-toggle, .price-toggle { color:var(--muted); display:grid; font-size:.78rem; font-weight:700; gap:6px; }
+select { appearance:none; background:var(--card); border:1px solid var(--line); border-radius:10px; color:var(--ink); font:inherit; padding:10px; }
+.place-toggle, .price-toggle { grid-column:auto; }
+.segmented { display:flex; gap:6px; }
+.place-button, .price-button { background:var(--card); border:1px solid var(--line); border-radius:999px; color:var(--muted); cursor:pointer; font:inherit; font-size:.82rem; padding:8px 13px; }
+.place-button.active, .price-button.active { background:var(--ink); border-color:var(--ink); color:white; }
+input { accent-color:var(--accent); }
+.section-heading { align-items:end; display:flex; justify-content:space-between; margin:28px 0 14px; }
+.count { color:var(--muted); font-size:.86rem; margin:-5px 0 14px; }
+.refresh { background:transparent; border:0; color:#8a4839; cursor:pointer; font:inherit; font-size:.86rem; font-weight:750; padding:4px 0; }
+.activity-list { display:grid; gap:12px; }
+.activity { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px; }
+.activity.indoor { background:#edf5fa; border-color:#d6e5ee; }
+.activity.outdoor { background:#edf6ed; border-color:#d9e9d9; }
+.activity.featured { background:#fff5cf; border-color:#f2d978; }
+.topline { align-items:flex-start; display:flex; gap:12px; justify-content:space-between; }
+.activity h3 { font-size:1.1rem; letter-spacing:-.02em; margin:0; }
+.activity p { color:var(--muted); font-size:.9rem; line-height:1.45; margin:8px 0 14px; }
+.tag { background:var(--sage); border-radius:20px; font-size:.76rem; font-weight:700; padding:6px 9px; white-space:nowrap; }
+.details { color:#536258; font-size:.83rem; margin-top:14px; }
+.card-actions { align-items:center; border-top:1px solid rgba(75, 105, 83, .13); display:flex; justify-content:space-between; margin-top:16px; padding-top:13px; }
+.source { color:#8a4839; display:inline-block; font-size:.83rem; font-weight:750; text-decoration:none; }
+.navigate-button { background:#dce9dd; border:1px solid #bad3bd; border-radius:10px; color:#315b3a; display:inline-block; font-size:.9rem; font-weight:800; padding:10px 16px; text-decoration:none; }
+.refresh-bottom { background:var(--ink); border:0; border-radius:12px; color:#fff; cursor:pointer; display:block; font:inherit; font-weight:800; margin:18px 0 0; padding:14px 18px; text-align:center; width:100%; }
+.note { background:#f3e6cf; border-radius:15px; color:#5c4c37; font-size:.88rem; line-height:1.55; margin-top:24px; padding:16px; }
+.empty { color:var(--muted); padding:24px 0; text-align:center; }
+@media (max-width:520px) { .shell { padding-top:32px; } }
