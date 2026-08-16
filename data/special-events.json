@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-16T13:37:47-05:00",
+  "updatedAt": "2026-08-16T13:40:29-05:00",
   "windowDays": 14,
   "events": [
     {
@@ -8,6 +8,14 @@
       "location": "McFarland Park",
       "url": "https://www.mycountyparks.com/County/Story/Park/McFarland-Park/Events/28963/Nature-Playdates",
       "source": "Story County",
+      "confidence": "主办方已核对"
+    },
+    {
+      "title": "Iowa State Fair",
+      "when": "Aug 13–23 · 大型活动，建议白天前往",
+      "location": "Iowa State Fairgrounds · Des Moines",
+      "url": "https://www.iowastatefair.org/entertainment/fair-schedule/",
+      "source": "Iowa State Fair",
       "confidence": "主办方已核对"
     }
   ],
