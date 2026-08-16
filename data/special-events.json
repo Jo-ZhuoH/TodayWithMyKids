@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-16T13:40:29-05:00",
+  "updatedAt": "2026-08-16T13:49:07-05:00",
   "windowDays": 14,
   "events": [
     {
@@ -17,6 +17,14 @@
       "url": "https://www.iowastatefair.org/entertainment/fair-schedule/",
       "source": "Iowa State Fair",
       "confidence": "主办方已核对"
+    },
+    {
+      "title": "Prairie Flower Parent-Child Playgroup",
+      "when": "9 月起 · 固定课程，具体日期与报名待确认",
+      "location": "Bethesda Lutheran Church · Ames",
+      "url": "https://www.prairieflowercc.org/",
+      "source": "Prairie Flower",
+      "confidence": "需要提前报名 · 14 个月–3 岁"
     }
   ],
   "sources": [

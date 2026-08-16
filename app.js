@@ -9,7 +9,6 @@ const activities = [
   { name: 'Moore Memorial Park', type: '自然散步 + Playground', category: 'park', drive: 15, place: 'outdoor', free: true, age: 'Playground，成人看护', water: '有', note: '有 playground、步行/自行车路径、自然区域与钓鱼区域；靠近水域时需全程看护。', url: 'https://www.cityofames.org/My-Government/Departments/Parks-and-Recreation/Parks/Moore-Memorial-Park' },
   { name: 'Schainker Plaza Splash Pad', type: '季节性戏水', category: 'park', drive: 8, place: 'outdoor', free: true, age: '低龄可玩，须全程看护', needsConfirmation: true, water: '待核实', splash: '可以玩水', note: '炎热日子的短时活动；出发前确认季节性开放状态。', url: 'https://www.cityofames.org/News-articles/Schainker-Plaza-Opening-June-15' },
   { name: 'Furman Aquatic Center', type: '水上乐园', category: 'play', drive: 10, place: 'outdoor', free: false, age: '有 toddler slide', needsConfirmation: true, water: '待核实', splash: '可以玩水', note: '有 zero-depth entry、喷水设施和 toddler slide；出发前确认开放时间与天气。', url: 'https://www.cityofames.org/My-Government/Departments/Parks-and-Recreation/Facilities/Furman-Aquatic-Center' },
-  { name: 'Prairie Flower Parent-Child Playgroup', type: '亲子活动', category: 'community', drive: 15, place: 'indoor', free: false, age: '14 个月–3 岁', needsConfirmation: true, registration: '需要查看报名', water: '待核实', note: '很贴合 18 个月年龄段；地点在 Bethesda Lutheran Church 内。', url: 'https://www.prairieflowercc.org/' },
   { name: 'Ames Play Yard', type: '室内游乐 + 咖啡', category: 'play', drive: 15, place: 'indoor', free: false, age: '有幼儿区域', water: '待核实', note: '有幼儿和大孩子区域，成人也可买咖啡；适合天气不好时放电。', url: 'https://www.amesplayyard.com/' },
   { name: 'Reiman Gardens', type: '花园与自然探索 · 特别推荐', category: 'park', drive: 20, place: 'outdoor', free: false, featured: true, age: '适合亲子散步', needsConfirmation: true, registration: '查看当日安排', water: '待核实', note: '天气好、愿意多开一会儿车时的半日目的地，有室内空间可作为辅助。', url: 'https://reimangardens.com/' }
 ];
@@ -18,7 +17,7 @@ const el = (id) => document.getElementById(id);
 let selectedPlace = 'any';
 let selectedPrice = 'any';
 let rotation = 0;
-const recommendationLimit = 5;
+const recommendationLimit = 3;
 let libraryEvents = [];
 let specialEvents = [];
 

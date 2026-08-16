@@ -85,7 +85,8 @@ def main() -> None:
     state_fair = []
     if today <= fair_end and today + timedelta(days=14) >= fair_start:
         state_fair.append({"title": "Iowa State Fair", "when": "Aug 13–23 · 大型活动，建议白天前往", "location": "Iowa State Fairgrounds · Des Moines", "url": "https://www.iowastatefair.org/entertainment/fair-schedule/", "source": "Iowa State Fair", "confidence": "主办方已核对"})
-    unique = {f"{e['source']}|{e['title']}|{e['when']}": e for e in discover + story + state_fair}
+    prairie_flower = {"title": "Prairie Flower Parent-Child Playgroup", "when": "9 月起 · 固定课程，具体日期与报名待确认", "location": "Bethesda Lutheran Church · Ames", "url": "https://www.prairieflowercc.org/", "source": "Prairie Flower", "confidence": "需要提前报名 · 14 个月–3 岁"}
+    unique = {f"{e['source']}|{e['title']}|{e['when']}": e for e in discover + story + state_fair + [prairie_flower]}
     OUT.write_text(json.dumps({"updatedAt": datetime.now(ZoneInfo("America/Chicago")).isoformat(timespec="seconds"), "windowDays": 14, "events": list(unique.values()), "sources": ["Discover Ames", "Story County", "Ames Parks & Recreation"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Synced {len(unique)} community event leads.")
 
