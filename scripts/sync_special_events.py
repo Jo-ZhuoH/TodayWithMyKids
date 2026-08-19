@@ -89,8 +89,12 @@ def main() -> None:
     tortoise_date = datetime(2026, 8, 27).date()
     if today <= tortoise_date <= today + timedelta(days=14):
         reiman_events.append({"title": "Tortoise Tales: Live Animal Meet-and-Greet", "when": "Aug 27 · 4:00–7:00 PM", "location": "Reiman Gardens · Ames", "url": "https://reimangardens.com/events", "source": "Reiman Gardens", "confidence": "All ages · 请核对入园门票与当日安排"})
+    center_grove_events = []
+    butterfly_release_start = datetime(2026, 8, 29).date()
+    if today <= butterfly_release_start <= today + timedelta(days=14):
+        center_grove_events.append({"title": "Butterfly Release", "when": "Aug 29–30 · 11:00 AM 或 4:00 PM", "location": "Center Grove Orchard · Cambridge", "url": "https://centergroveorchard.com/pages/events/events-gqgphckl", "source": "Center Grove Orchard", "confidence": "亲子自然活动 · 需购票"})
     prairie_flower = {"title": "Little Song Parent-Child Club", "when": "秋季学期 · 12 次每周课程；本期时间与报名待确认", "location": "Bethesda Lutheran Church · Ames", "url": "https://www.prairieflowercc.org/parent-child-club.html", "source": "Prairie Flower", "confidence": "需要提前报名 · 15 个月–3 岁 · $15/次"}
-    unique = {f"{e['source']}|{e['title']}|{e['when']}": e for e in discover + story + state_fair + reiman_events + [prairie_flower]}
+    unique = {f"{e['source']}|{e['title']}|{e['when']}": e for e in discover + story + state_fair + reiman_events + center_grove_events + [prairie_flower]}
     OUT.write_text(json.dumps({"updatedAt": datetime.now(ZoneInfo("America/Chicago")).isoformat(timespec="seconds"), "windowDays": 14, "events": list(unique.values()), "sources": ["Discover Ames", "Story County", "Ames Parks & Recreation"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Synced {len(unique)} community event leads.")
 

@@ -89,7 +89,7 @@ async function loadLibraryCalendar() {
 
 function renderSpecialEvents() {
   const list = el('specialEventList');
-  list.innerHTML = specialEvents.length ? specialEvents.slice(0, 5).map(event => `<article class="special-event"><p class="eyebrow">${event.source} · ${event.confidence}</p><h3>${event.title}</h3><p>${event.when}${event.location ? ` · ${event.location}` : ''}</p><a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`).join('') : '<p class="special-empty">本周尚未找到适合 toddler 的特别活动。可以查看全部来源，或稍后再刷新。</p>';
+  list.innerHTML = specialEvents.length ? specialEvents.slice(0, 6).map(event => `<article class="special-event"><p class="eyebrow">${event.source} · ${event.confidence}</p><h3>${event.title}</h3><p>${event.when}${event.location ? ` · ${event.location}` : ''}</p><a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`).join('') : '<p class="special-empty">本周尚未找到适合 toddler 的特别活动。可以查看全部来源，或稍后再刷新。</p>';
 }
 
 async function loadSpecialEvents() {

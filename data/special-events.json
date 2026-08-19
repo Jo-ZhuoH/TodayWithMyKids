@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T20:39:57-05:00",
+  "updatedAt": "2026-08-18T20:42:52-05:00",
   "windowDays": 14,
   "events": [
     {
@@ -33,6 +33,14 @@
       "url": "https://reimangardens.com/events",
       "source": "Reiman Gardens",
       "confidence": "All ages · 请核对入园门票与当日安排"
+    },
+    {
+      "title": "Butterfly Release",
+      "when": "Aug 29–30 · 11:00 AM 或 4:00 PM",
+      "location": "Center Grove Orchard · Cambridge",
+      "url": "https://centergroveorchard.com/pages/events/events-gqgphckl",
+      "source": "Center Grove Orchard",
+      "confidence": "亲子自然活动 · 需购票"
     },
     {
       "title": "Little Song Parent-Child Club",
