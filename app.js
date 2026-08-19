@@ -1,6 +1,7 @@
 const activities = [
   { name: 'Toddler Storytime', type: '图书馆活动 · 今日推荐', category: 'library', drive: 7, place: 'indoor', free: true, featured: true, age: '幼儿友好', availability: 'calendarRequired', needsConfirmation: true, water: '待核实', note: '此活动仅在官方日历确认当天有场次时显示。', url: 'https://www.amespubliclibrary.org/events/list' },
   { name: 'Ames Public Library 儿童区', type: '安静室内备选', category: 'library', drive: 7, place: 'indoor', free: true, age: '0–3 岁友好', water: '待核实', note: '没有固定活动时也可读书、活动身体，是下雨天的低成本备选。', url: 'https://www.amespubliclibrary.org/' },
+  { name: 'Caterpillar Club', type: '户外亲子自然活动', category: 'community', drive: 20, place: 'outdoor', free: false, age: '官方建议 2–5 岁，成人陪同', availability: 'thursday', needsConfirmation: true, water: '待核实', note: '每周四 10:15，45 分钟；户外故事、自然探索和活动，无需报名。下雨照常进行，极端天气除外；需购买 Reiman Gardens 入园门票。', url: 'https://reimangardens.com/events' },
   { name: 'Labyrinth Coffee', type: '咖啡 + 儿童玩耍区', category: 'play', drive: 10, place: 'indoor', free: false, age: '低龄友好', water: '待核实', note: '有家长推荐的儿童玩耍区、玩具和 Lego；出发前核对当天开放时间。', url: 'https://www.labyrinthcoffeeames.org/' },
   { name: 'Play Pals Indoor Playground', type: '低龄室内玩耍', category: 'play', drive: 10, place: 'indoor', free: false, age: '5 岁及以下', needsConfirmation: true, water: '待核实', availability: 'schoolYearWeekdayMorning', note: 'Community Center 的玩具、滑梯和骑乘玩具；仅在 Labor Day 到 Memorial Day 之间的周一至周五 9–11 点显示。', url: 'https://www.cityofames.org/My-Government/Departments/Parks-and-Recreation/Facilities/Community-Center' },
   { name: 'Stuart Smith Park', type: '户外 Playground', category: 'park', drive: 10, place: 'outdoor', free: true, age: '新 playground，成人看护', water: '未列出饮水设施', note: '有 playground、开放草地和步行/自行车路径；市政府在 2025 年完成新 playground。', url: 'https://www.cityofames.org/My-Government/Departments/Parks-and-Recreation/Parks/Stuart-Smith-Park' },
@@ -20,6 +21,18 @@ let rotation = 0;
 const recommendationLimit = 3;
 let libraryEvents = [];
 let specialEvents = [];
+const fixedWeeklyEvents = [{
+  title: 'Caterpillar Club', source: 'Reiman Gardens', location: 'Reiman Gardens · Ames',
+  url: 'https://reimangardens.com/events', confidence: '每周固定活动 · 2–5 岁，成人陪同 · 需入园门票',
+  ageGroups: ['toddler', 'preschool'], weekday: 4, time: '10:15–11:00 AM', startMinutes: 10 * 60 + 15
+}];
+const ageGroupsByActivity = {
+  'Toddler Storytime': ['baby', 'toddler', 'preschool'], 'Ames Public Library 儿童区': ['baby', 'toddler', 'preschool', 'schoolage'],
+  'Caterpillar Club': ['toddler', 'preschool'], 'Labyrinth Coffee': ['baby', 'toddler', 'preschool'], 'Play Pals Indoor Playground': ['baby', 'toddler', 'preschool'],
+  'Stuart Smith Park': ['toddler', 'preschool', 'schoolage'], 'Brookside Park': ['toddler', 'preschool', 'schoolage'], 'Inis Grove Park': ['toddler', 'preschool', 'schoolage'],
+  'Moore Memorial Park': ['toddler', 'preschool', 'schoolage'], 'Schainker Plaza Splash Pad': ['toddler', 'preschool', 'schoolage'],
+  'Furman Aquatic Center': ['toddler', 'preschool', 'schoolage'], 'Ames Play Yard': ['baby', 'toddler', 'preschool', 'schoolage'], 'Reiman Gardens': ['baby', 'toddler', 'preschool', 'schoolage']
+};
 
 const weatherCodeText = {
   0: ['☀️', '晴朗'], 1: ['🌤️', '大致晴朗'], 2: ['⛅', '局部多云'], 3: ['☁️', '阴天'],
@@ -88,7 +101,52 @@ async function loadLibraryCalendar() {
 
 function renderSpecialEvents() {
   const list = el('specialEventList');
-  list.innerHTML = specialEvents.length ? specialEvents.slice(0, 4).map(event => `<article class="special-event"><p class="eyebrow">${event.source} · ${event.confidence}</p><h3>${event.title}</h3><p>${event.when}${event.location ? ` · ${event.location}` : ''}</p><a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`).join('') : '<p class="special-empty">本周尚未找到适合 toddler 的特别活动。可以查看全部来源，或稍后再刷新。</p>';
+  const now = new Date();
+  const monday = new Date(now); monday.setDate(now.getDate() - ((now.getDay() + 6) % 7)); monday.setHours(0, 0, 0, 0);
+  const sunday = new Date(monday); sunday.setDate(monday.getDate() + 6); sunday.setHours(23, 59, 59, 999);
+  const ageGroup = el('ageFilter').value;
+  const dateKey = date => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  const fixedThisWeek = fixedWeeklyEvents.map(event => {
+    const date = new Date(monday); date.setDate(monday.getDate() + ((event.weekday + 6) % 7));
+    return { ...event, startDate: dateKey(date), endDate: dateKey(date), fixed: true };
+  }).filter(event => new Date(`${event.startDate}T23:59:59`) >= now);
+  const thisWeek = [...specialEvents, ...fixedThisWeek].filter(event => {
+    const start = event.startDate ? new Date(`${event.startDate}T00:00:00`) : null;
+    const end = event.endDate ? new Date(`${event.endDate}T23:59:59`) : start;
+    return start && end >= monday && start <= sunday && (!event.ageGroups || event.ageGroups.includes(ageGroup));
+  }).sort((a, b) => `${a.startDate}|${String(a.startMinutes || 0).padStart(4, '0')}`.localeCompare(`${b.startDate}|${String(b.startMinutes || 0).padStart(4, '0')}`));
+  list.innerHTML = thisWeek.length ? thisWeek.map(specialEventCard).join('') : '<p class="special-empty">本周没有匹配的特别活动。可以到“查看全部”浏览未来已记录活动。</p>';
+}
+
+function eventDateLabel(event) {
+  const options = { weekday: 'short', month: 'short', day: 'numeric' };
+  const start = new Date(`${event.startDate}T12:00:00`);
+  const end = new Date(`${event.endDate || event.startDate}T12:00:00`);
+  const startLabel = new Intl.DateTimeFormat('en-US', options).format(start);
+  if (event.startDate === event.endDate) return startLabel;
+  if (start.getMonth() === end.getMonth()) return `${startLabel}–${end.getDate()}`;
+  return `${startLabel}–${new Intl.DateTimeFormat('en-US', options).format(end)}`;
+}
+
+function eventTimeLabel(event) {
+  if (event.time) return event.time;
+  const raw = event.when || '';
+  const match = raw.match(/\d{1,2}:\d{2}\s*(?:a\.?m\.?|p\.?m\.?)(?:\s*(?:-|–)\s*\d{1,2}:\d{2}\s*(?:a\.?m\.?|p\.?m\.?))?/i);
+  if (!match) return raw.includes('·') ? raw.split('·').slice(1).join('·').trim() : '';
+  return match[0].replace(/\s*(?:-|–)\s*/g, '–').replace(/a\.?m\.?/gi, 'AM').replace(/p\.?m\.?/gi, 'PM');
+}
+
+function specialEventCard(event) {
+  const timing = [eventDateLabel(event), eventTimeLabel(event)].filter(Boolean).join(' · ');
+  const sourceName = (event.source || '').toLowerCase();
+  const locationName = (event.location || '').toLowerCase();
+  const titleName = (event.title || '').toLowerCase();
+  const repeatsSource = sourceName && (locationName.includes(sourceName) || titleName === sourceName);
+  const label = event.categoryLabel || (!repeatsSource ? event.source : '');
+  const destination = encodeURIComponent(event.location || `${event.title}, Ames, IA`);
+  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=driving`;
+  const routeUrl = /iPad|iPhone|iPod/.test(navigator.userAgent) ? `comgooglemaps://?daddr=${destination}&directionsmode=driving` : googleMapsUrl;
+  return `<article class="special-event">${label ? `<p class="eyebrow">${label}</p>` : ''}<h3>${event.title}</h3><p class="event-time">${timing}</p>${event.location ? `<p>${event.location}</p>` : ''}${event.confidence ? `<p class="event-note">${event.confidence}</p>` : ''}<div class="special-actions"><a class="navigate-button" href="${routeUrl}">路线 ↗</a><a class="source" href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></div></article>`;
 }
 
 async function loadSpecialEvents() {
@@ -114,6 +172,7 @@ function lastMondayOfMay(year) {
 
 function isAvailableToday(activity, now = new Date()) {
   if (activity.availability === 'calendarRequired') return libraryEvents.some(event => event.name === activity.name);
+  if (activity.availability === 'thursday') return now.getDay() === 4;
   if (activity.availability !== 'schoolYearWeekdayMorning') return true;
   const laborDay = firstMondayOfSeptember(now.getFullYear());
   const memorialDay = lastMondayOfMay(now.getFullYear());
@@ -138,7 +197,8 @@ function spreadCategories(items) {
 
 function render() {
   const maxDrive = Number(el('driveFilter').value);
-  const matches = activities.filter(a => isAvailableToday(a) && a.drive <= maxDrive && (selectedPlace === 'any' || a.place === selectedPlace) && (selectedPrice === 'any' || a.free));
+  const ageGroup = el('ageFilter').value;
+  const matches = activities.filter(a => isAvailableToday(a) && ageGroupsByActivity[a.name].includes(ageGroup) && a.drive <= maxDrive && (selectedPlace === 'any' || a.place === selectedPlace) && (selectedPrice === 'any' || a.free));
   const rotated = matches.length ? [...matches.slice(rotation % matches.length), ...matches.slice(0, rotation % matches.length)] : [];
   const shown = spreadCategories(rotated);
   el('resultCount').textContent = matches.length > recommendationLimit ? `今天先给你 ${recommendationLimit} 个建议 · 还有 ${matches.length - recommendationLimit} 个可换` : `今天为你找到 ${matches.length} 个建议`;
@@ -150,7 +210,11 @@ function render() {
       <div class="card-actions"><a class="navigate-button" href="${directionsUrl(a)}">路线 ↗</a>${a.needsConfirmation ? `<a class="source" href="${a.url}" target="_blank" rel="noreferrer">确认信息 ↗</a>` : ''}</div>
     </article>`).join('') : '<p class="empty">没有匹配结果。试试扩大车程或取消“只看免费”。</p>';
 }
-document.querySelectorAll('select').forEach(control => control.addEventListener('change', () => { rotation = 0; render(); }));
+document.querySelectorAll('select').forEach(control => control.addEventListener('change', () => {
+  rotation = 0;
+  render();
+  renderSpecialEvents();
+}));
 document.querySelectorAll('.place-button').forEach(button => button.addEventListener('click', () => {
   selectedPlace = button.dataset.place;
   rotation = 0;
