@@ -144,7 +144,10 @@ function specialEventCard(event) {
   const repeatsSource = sourceName && (locationName.includes(sourceName) || titleName === sourceName);
   const label = event.categoryLabel || (!repeatsSource ? event.source : '');
   const location = repeatsSource || locationName === titleName ? '' : event.location;
-  return `<article class="special-event">${label ? `<p class="eyebrow">${label}</p>` : ''}<h3>${event.title}</h3><p class="event-time">${timing}</p>${location ? `<p>${location}</p>` : ''}${event.confidence ? `<p class="event-note">${event.confidence}</p>` : ''}<a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`;
+  const destination = encodeURIComponent(event.location || `${event.title}, Ames, IA`);
+  const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${destination}&travelmode=driving`;
+  const routeUrl = /iPad|iPhone|iPod/.test(navigator.userAgent) ? `comgooglemaps://?daddr=${destination}&directionsmode=driving` : googleMapsUrl;
+  return `<article class="special-event">${label ? `<p class="eyebrow">${label}</p>` : ''}<h3>${event.title}</h3><p class="event-time">${timing}</p>${location ? `<p>${location}</p>` : ''}${event.confidence ? `<p class="event-note">${event.confidence}</p>` : ''}<div class="special-actions"><a class="navigate-button" href="${routeUrl}">路线 ↗</a><a class="source" href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></div></article>`;
 }
 
 async function loadSpecialEvents() {
