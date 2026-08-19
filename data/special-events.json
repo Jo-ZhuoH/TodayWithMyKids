@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-18T20:42:52-05:00",
-  "windowDays": 14,
+  "updatedAt": "2026-08-18T20:52:10-05:00",
+  "windowDays": 120,
   "events": [
     {
       "title": "Ames Main Street Farmers’ Market",
@@ -8,7 +8,28 @@
       "location": "Downtown Ames",
       "url": "https://discoverames.com/events/ames-main-street-farmers-market-88/",
       "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对"
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-08-22",
+      "endDate": "2026-08-22",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Art Walk: The Iowa Landscape",
+      "when": "26 Aug 12:00 pm - 1:00 pm",
+      "location": "Advanced Teaching Research Building",
+      "url": "https://discoverames.com/events/art-walk-the-iowa-landscape/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-08-26",
+      "endDate": "2026-08-26",
+      "ageGroups": [
+        "schoolage"
+      ]
     },
     {
       "title": "Nature Playdates",
@@ -16,7 +37,14 @@
       "location": "McFarland Park",
       "url": "https://www.mycountyparks.com/County/Story/Park/McFarland-Park/Events/28963/Nature-Playdates",
       "source": "Story County",
-      "confidence": "主办方已核对"
+      "confidence": "主办方已核对",
+      "startDate": "2026-08-25",
+      "endDate": "2026-08-25",
+      "ageGroups": [
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
     },
     {
       "title": "Iowa State Fair",
@@ -24,7 +52,15 @@
       "location": "Iowa State Fairgrounds · Des Moines",
       "url": "https://www.iowastatefair.org/entertainment/fair-schedule/",
       "source": "Iowa State Fair",
-      "confidence": "主办方已核对"
+      "confidence": "主办方已核对",
+      "startDate": "2026-08-13",
+      "endDate": "2026-08-23",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
     },
     {
       "title": "Tortoise Tales: Live Animal Meet-and-Greet",
@@ -32,7 +68,42 @@
       "location": "Reiman Gardens · Ames",
       "url": "https://reimangardens.com/events",
       "source": "Reiman Gardens",
-      "confidence": "All ages · 请核对入园门票与当日安排"
+      "confidence": "All ages · 请核对入园门票与当日安排",
+      "startDate": "2026-08-27",
+      "endDate": "2026-08-27",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Family Movie Night: Disney's A Bug's Life",
+      "when": "Aug 29 · 7:00–10:00 PM",
+      "location": "Reiman Gardens · Ames",
+      "url": "https://reimangardens.com/events",
+      "source": "Reiman Gardens",
+      "confidence": "All ages · 晚间活动，较适合 3 岁以上",
+      "startDate": "2026-08-29",
+      "endDate": "2026-08-29",
+      "ageGroups": [
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Youth Day Camp: Survival Skills",
+      "when": "Sep 14 · 9:00 AM–4:00 PM",
+      "location": "Reiman Gardens · Ames",
+      "url": "https://reimangardens.com/events",
+      "source": "Reiman Gardens",
+      "confidence": "需报名 · 6–10 岁 · $55–70",
+      "startDate": "2026-09-14",
+      "endDate": "2026-09-14",
+      "ageGroups": [
+        "schoolage"
+      ]
     },
     {
       "title": "Butterfly Release",
@@ -40,7 +111,31 @@
       "location": "Center Grove Orchard · Cambridge",
       "url": "https://centergroveorchard.com/pages/events/events-gqgphckl",
       "source": "Center Grove Orchard",
-      "confidence": "亲子自然活动 · 需购票"
+      "confidence": "亲子自然活动 · 需购票",
+      "startDate": "2026-08-29",
+      "endDate": "2026-08-30",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Country Celebration",
+      "when": "Sep 1–30 · 季节性农场活动",
+      "location": "Center Grove Orchard · Cambridge",
+      "url": "https://centergroveorchard.com/pages/fall-on-the-farm",
+      "source": "Center Grove Orchard",
+      "confidence": "适合家庭 · 出发前确认开放时间与门票",
+      "startDate": "2026-09-01",
+      "endDate": "2026-09-30",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
     },
     {
       "title": "Little Song Parent-Child Club",
@@ -48,12 +143,20 @@
       "location": "Bethesda Lutheran Church · Ames",
       "url": "https://www.prairieflowercc.org/parent-child-club.html",
       "source": "Prairie Flower",
-      "confidence": "需要提前报名 · 15 个月–3 岁 · $15/次"
+      "confidence": "需要提前报名 · 15 个月–3 岁 · $15/次",
+      "startDate": "2026-09-01",
+      "endDate": "2026-11-30",
+      "ageGroups": [
+        "toddler",
+        "preschool"
+      ]
     }
   ],
   "sources": [
     "Discover Ames",
     "Story County",
-    "Ames Parks & Recreation"
+    "Ames Parks & Recreation",
+    "Reiman Gardens",
+    "Center Grove Orchard"
   ]
 }

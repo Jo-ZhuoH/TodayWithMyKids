@@ -10,7 +10,7 @@
     <main class="shell">
       <header>
         <h1>在 Ames, Iowa，今天带孩子去哪？</h1>
-        <p class="subtitle summary-line">给 <select id="ageFilter" aria-label="孩子年龄段"><option value="baby">baby</option><option value="toddler" selected>toddler</option><option value="preschool">3–5 岁</option></select> 的今天活动建议，先看 <select id="driveFilter" aria-label="最多车程"><option value="10">10 分钟</option><option value="15" selected>15 分钟</option><option value="30">30 分钟</option></select> 车程内的选择。</p>
+        <p class="subtitle summary-line">给 <select id="ageFilter" aria-label="孩子年龄段"><option value="baby">baby</option><option value="toddler" selected>toddler</option><option value="preschool">3–5 岁</option><option value="schoolage">6–10 岁</option></select> 的今天活动建议，先看 <select id="driveFilter" aria-label="最多车程"><option value="10">10 分钟</option><option value="15" selected>15 分钟</option><option value="30">30 分钟</option></select> 车程内的选择。</p>
       </header>
 
       <section class="weather-card" aria-label="天气提示示例">
@@ -52,7 +52,7 @@
       <button id="refreshChoicesBottom" class="refresh-bottom" type="button">换一批建议 ↻</button>
 
       <section class="special-events" aria-labelledby="specialEventsTitle">
-        <div class="special-heading"><div><p class="eyebrow">周末 / 一小时内</p><h2 id="specialEventsTitle">本周特别活动</h2></div><a href="https://discoverames.com/events-calendar/" target="_blank" rel="noreferrer">查看全部 ↗</a></div>
+        <div class="special-heading"><h2 id="specialEventsTitle">本周特别活动</h2><a href="all-activities.html">查看全部 ↗</a></div>
         <p class="special-intro">只显示来自公开日历、值得带孩子进一步核对的活动。</p>
         <div id="specialEventList" class="special-event-list" aria-live="polite"></div>
         <p class="source-note">来源：Discover Ames · Story County · Ames Parks & Recreation</p>

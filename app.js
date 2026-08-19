@@ -21,6 +21,13 @@ let rotation = 0;
 const recommendationLimit = 3;
 let libraryEvents = [];
 let specialEvents = [];
+const ageGroupsByActivity = {
+  'Toddler Storytime': ['baby', 'toddler', 'preschool'], 'Ames Public Library 儿童区': ['baby', 'toddler', 'preschool', 'schoolage'],
+  'Caterpillar Club': ['toddler', 'preschool'], 'Labyrinth Coffee': ['baby', 'toddler', 'preschool'], 'Play Pals Indoor Playground': ['baby', 'toddler', 'preschool'],
+  'Stuart Smith Park': ['toddler', 'preschool', 'schoolage'], 'Brookside Park': ['toddler', 'preschool', 'schoolage'], 'Inis Grove Park': ['toddler', 'preschool', 'schoolage'],
+  'Moore Memorial Park': ['toddler', 'preschool', 'schoolage'], 'Schainker Plaza Splash Pad': ['toddler', 'preschool', 'schoolage'],
+  'Furman Aquatic Center': ['toddler', 'preschool', 'schoolage'], 'Ames Play Yard': ['baby', 'toddler', 'preschool', 'schoolage'], 'Reiman Gardens': ['baby', 'toddler', 'preschool', 'schoolage']
+};
 
 const weatherCodeText = {
   0: ['☀️', '晴朗'], 1: ['🌤️', '大致晴朗'], 2: ['⛅', '局部多云'], 3: ['☁️', '阴天'],
@@ -89,7 +96,16 @@ async function loadLibraryCalendar() {
 
 function renderSpecialEvents() {
   const list = el('specialEventList');
-  list.innerHTML = specialEvents.length ? specialEvents.slice(0, 6).map(event => `<article class="special-event"><p class="eyebrow">${event.source} · ${event.confidence}</p><h3>${event.title}</h3><p>${event.when}${event.location ? ` · ${event.location}` : ''}</p><a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`).join('') : '<p class="special-empty">本周尚未找到适合 toddler 的特别活动。可以查看全部来源，或稍后再刷新。</p>';
+  const now = new Date();
+  const monday = new Date(now); monday.setDate(now.getDate() - ((now.getDay() + 6) % 7)); monday.setHours(0, 0, 0, 0);
+  const sunday = new Date(monday); sunday.setDate(monday.getDate() + 6); sunday.setHours(23, 59, 59, 999);
+  const ageGroup = el('ageFilter').value;
+  const thisWeek = specialEvents.filter(event => {
+    const start = event.startDate ? new Date(`${event.startDate}T00:00:00`) : null;
+    const end = event.endDate ? new Date(`${event.endDate}T23:59:59`) : start;
+    return start && end >= monday && start <= sunday && (!event.ageGroups || event.ageGroups.includes(ageGroup));
+  });
+  list.innerHTML = thisWeek.length ? thisWeek.map(event => `<article class="special-event"><p class="eyebrow">${event.source} · ${event.confidence}</p><h3>${event.title}</h3><p>${event.when}${event.location ? ` · ${event.location}` : ''}</p><a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`).join('') : '<p class="special-empty">本周没有匹配的特别活动。可以到“查看全部”浏览未来已记录活动。</p>';
 }
 
 async function loadSpecialEvents() {
@@ -140,7 +156,8 @@ function spreadCategories(items) {
 
 function render() {
   const maxDrive = Number(el('driveFilter').value);
-  const matches = activities.filter(a => isAvailableToday(a) && a.drive <= maxDrive && (selectedPlace === 'any' || a.place === selectedPlace) && (selectedPrice === 'any' || a.free));
+  const ageGroup = el('ageFilter').value;
+  const matches = activities.filter(a => isAvailableToday(a) && ageGroupsByActivity[a.name].includes(ageGroup) && a.drive <= maxDrive && (selectedPlace === 'any' || a.place === selectedPlace) && (selectedPrice === 'any' || a.free));
   const rotated = matches.length ? [...matches.slice(rotation % matches.length), ...matches.slice(0, rotation % matches.length)] : [];
   const shown = spreadCategories(rotated);
   el('resultCount').textContent = matches.length > recommendationLimit ? `今天先给你 ${recommendationLimit} 个建议 · 还有 ${matches.length - recommendationLimit} 个可换` : `今天为你找到 ${matches.length} 个建议`;
@@ -152,7 +169,11 @@ function render() {
       <div class="card-actions"><a class="navigate-button" href="${directionsUrl(a)}">路线 ↗</a>${a.needsConfirmation ? `<a class="source" href="${a.url}" target="_blank" rel="noreferrer">确认信息 ↗</a>` : ''}</div>
     </article>`).join('') : '<p class="empty">没有匹配结果。试试扩大车程或取消“只看免费”。</p>';
 }
-document.querySelectorAll('select').forEach(control => control.addEventListener('change', () => { rotation = 0; render(); }));
+document.querySelectorAll('select').forEach(control => control.addEventListener('change', () => {
+  rotation = 0;
+  render();
+  renderSpecialEvents();
+}));
 document.querySelectorAll('.place-button').forEach(button => button.addEventListener('click', () => {
   selectedPlace = button.dataset.place;
   rotation = 0;
