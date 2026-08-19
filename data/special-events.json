@@ -1,0 +1,35 @@
+{
+  "updatedAt": "2026-08-16T13:52:50-05:00",
+  "windowDays": 14,
+  "events": [
+    {
+      "title": "Nature Playdates",
+      "when": "AUG 25 2026 10:00 AM",
+      "location": "McFarland Park",
+      "url": "https://www.mycountyparks.com/County/Story/Park/McFarland-Park/Events/28963/Nature-Playdates",
+      "source": "Story County",
+      "confidence": "主办方已核对"
+    },
+    {
+      "title": "Iowa State Fair",
+      "when": "Aug 13–23 · 大型活动，建议白天前往",
+      "location": "Iowa State Fairgrounds · Des Moines",
+      "url": "https://www.iowastatefair.org/entertainment/fair-schedule/",
+      "source": "Iowa State Fair",
+      "confidence": "主办方已核对"
+    },
+    {
+      "title": "Little Song Parent-Child Club",
+      "when": "秋季学期 · 12 次每周课程；本期时间与报名待确认",
+      "location": "Bethesda Lutheran Church · Ames",
+      "url": "https://www.prairieflowercc.org/parent-child-club.html",
+      "source": "Prairie Flower",
+      "confidence": "需要提前报名 · 15 个月–3 岁 · $15/次"
+    }
+  ],
+  "sources": [
+    "Discover Ames",
+    "Story County",
+    "Ames Parks & Recreation"
+  ]
+}

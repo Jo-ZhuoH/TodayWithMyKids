@@ -19,6 +19,7 @@
           <strong id="weatherHeadline">正在读取 Ames 天气…</strong>
           <p id="weatherAlerts" hidden></p>
         </div>
+        <div id="hourlyWeather" class="hourly-weather" aria-label="未来几小时天气"></div>
       </section>
 
       <section class="filters" aria-label="活动筛选">
@@ -49,6 +50,13 @@
       <p id="resultCount" class="count">今天先给你 3 个建议</p>
       <section id="activityList" class="activity-list" aria-live="polite"></section>
       <button id="refreshChoicesBottom" class="refresh-bottom" type="button">换一批建议 ↻</button>
+
+      <section class="special-events" aria-labelledby="specialEventsTitle">
+        <div class="special-heading"><div><p class="eyebrow">周末 / 一小时内</p><h2 id="specialEventsTitle">本周特别活动</h2></div><a href="https://discoverames.com/events-calendar/" target="_blank" rel="noreferrer">查看全部 ↗</a></div>
+        <p class="special-intro">只显示来自公开日历、值得带孩子进一步核对的活动。</p>
+        <div id="specialEventList" class="special-event-list" aria-live="polite"></div>
+        <p class="source-note">来源：Discover Ames · Story County · Ames Parks & Recreation</p>
+      </section>
 
     </main>
     <script src="app.js"></script>
