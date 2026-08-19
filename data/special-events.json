@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T20:52:10-05:00",
+  "updatedAt": "2026-08-18T21:18:15-05:00",
   "windowDays": 120,
   "events": [
     {
@@ -111,25 +111,10 @@
       "location": "Center Grove Orchard · Cambridge",
       "url": "https://centergroveorchard.com/pages/events/events-gqgphckl",
       "source": "Center Grove Orchard",
+      "categoryLabel": "Fall Farm Fun",
       "confidence": "亲子自然活动 · 需购票",
       "startDate": "2026-08-29",
       "endDate": "2026-08-30",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
-    {
-      "title": "Country Celebration",
-      "when": "Sep 1–30 · 季节性农场活动",
-      "location": "Center Grove Orchard · Cambridge",
-      "url": "https://centergroveorchard.com/pages/fall-on-the-farm",
-      "source": "Center Grove Orchard",
-      "confidence": "适合家庭 · 出发前确认开放时间与门票",
-      "startDate": "2026-09-01",
-      "endDate": "2026-09-30",
       "ageGroups": [
         "baby",
         "toddler",

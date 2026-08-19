@@ -21,6 +21,11 @@ let rotation = 0;
 const recommendationLimit = 3;
 let libraryEvents = [];
 let specialEvents = [];
+const fixedWeeklyEvents = [{
+  title: 'Caterpillar Club', source: 'Reiman Gardens', location: 'Reiman Gardens · Ames',
+  url: 'https://reimangardens.com/events', confidence: '每周固定活动 · 2–5 岁，成人陪同 · 需入园门票',
+  ageGroups: ['toddler', 'preschool'], weekday: 4, time: '10:15–11:00 AM', startMinutes: 10 * 60 + 15
+}];
 const ageGroupsByActivity = {
   'Toddler Storytime': ['baby', 'toddler', 'preschool'], 'Ames Public Library 儿童区': ['baby', 'toddler', 'preschool', 'schoolage'],
   'Caterpillar Club': ['toddler', 'preschool'], 'Labyrinth Coffee': ['baby', 'toddler', 'preschool'], 'Play Pals Indoor Playground': ['baby', 'toddler', 'preschool'],
@@ -100,12 +105,46 @@ function renderSpecialEvents() {
   const monday = new Date(now); monday.setDate(now.getDate() - ((now.getDay() + 6) % 7)); monday.setHours(0, 0, 0, 0);
   const sunday = new Date(monday); sunday.setDate(monday.getDate() + 6); sunday.setHours(23, 59, 59, 999);
   const ageGroup = el('ageFilter').value;
-  const thisWeek = specialEvents.filter(event => {
+  const dateKey = date => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  const fixedThisWeek = fixedWeeklyEvents.map(event => {
+    const date = new Date(monday); date.setDate(monday.getDate() + ((event.weekday + 6) % 7));
+    return { ...event, startDate: dateKey(date), endDate: dateKey(date), fixed: true };
+  }).filter(event => new Date(`${event.startDate}T23:59:59`) >= now);
+  const thisWeek = [...specialEvents, ...fixedThisWeek].filter(event => {
     const start = event.startDate ? new Date(`${event.startDate}T00:00:00`) : null;
     const end = event.endDate ? new Date(`${event.endDate}T23:59:59`) : start;
     return start && end >= monday && start <= sunday && (!event.ageGroups || event.ageGroups.includes(ageGroup));
-  });
-  list.innerHTML = thisWeek.length ? thisWeek.map(event => `<article class="special-event"><p class="eyebrow">${event.source} · ${event.confidence}</p><h3>${event.title}</h3><p>${event.when}${event.location ? ` · ${event.location}` : ''}</p><a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`).join('') : '<p class="special-empty">本周没有匹配的特别活动。可以到“查看全部”浏览未来已记录活动。</p>';
+  }).sort((a, b) => `${a.startDate}|${String(a.startMinutes || 0).padStart(4, '0')}`.localeCompare(`${b.startDate}|${String(b.startMinutes || 0).padStart(4, '0')}`));
+  list.innerHTML = thisWeek.length ? thisWeek.map(specialEventCard).join('') : '<p class="special-empty">本周没有匹配的特别活动。可以到“查看全部”浏览未来已记录活动。</p>';
+}
+
+function eventDateLabel(event) {
+  const options = { weekday: 'short', month: 'short', day: 'numeric' };
+  const start = new Date(`${event.startDate}T12:00:00`);
+  const end = new Date(`${event.endDate || event.startDate}T12:00:00`);
+  const startLabel = new Intl.DateTimeFormat('en-US', options).format(start);
+  if (event.startDate === event.endDate) return startLabel;
+  if (start.getMonth() === end.getMonth()) return `${startLabel}–${end.getDate()}`;
+  return `${startLabel}–${new Intl.DateTimeFormat('en-US', options).format(end)}`;
+}
+
+function eventTimeLabel(event) {
+  if (event.time) return event.time;
+  const raw = event.when || '';
+  const match = raw.match(/\d{1,2}:\d{2}\s*(?:a\.?m\.?|p\.?m\.?)(?:\s*(?:-|–)\s*\d{1,2}:\d{2}\s*(?:a\.?m\.?|p\.?m\.?))?/i);
+  if (!match) return raw.includes('·') ? raw.split('·').slice(1).join('·').trim() : '';
+  return match[0].replace(/\s*(?:-|–)\s*/g, '–').replace(/a\.?m\.?/gi, 'AM').replace(/p\.?m\.?/gi, 'PM');
+}
+
+function specialEventCard(event) {
+  const timing = [eventDateLabel(event), eventTimeLabel(event)].filter(Boolean).join(' · ');
+  const sourceName = (event.source || '').toLowerCase();
+  const locationName = (event.location || '').toLowerCase();
+  const titleName = (event.title || '').toLowerCase();
+  const repeatsSource = sourceName && (locationName.includes(sourceName) || titleName === sourceName);
+  const label = event.categoryLabel || (!repeatsSource ? event.source : '');
+  const location = repeatsSource || locationName === titleName ? '' : event.location;
+  return `<article class="special-event">${label ? `<p class="eyebrow">${label}</p>` : ''}<h3>${event.title}</h3><p class="event-time">${timing}</p>${location ? `<p>${location}</p>` : ''}${event.confidence ? `<p class="event-note">${event.confidence}</p>` : ''}<a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`;
 }
 
 async function loadSpecialEvents() {
