@@ -1,7 +1,15 @@
 {
-  "updatedAt": "2026-08-16T13:52:50-05:00",
+  "updatedAt": "2026-08-18T20:39:57-05:00",
   "windowDays": 14,
   "events": [
+    {
+      "title": "Ames Main Street Farmers’ Market",
+      "when": "22 Aug 8:00 am - 12:30 pm",
+      "location": "Downtown Ames",
+      "url": "https://discoverames.com/events/ames-main-street-farmers-market-88/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对"
+    },
     {
       "title": "Nature Playdates",
       "when": "AUG 25 2026 10:00 AM",
@@ -17,6 +25,14 @@
       "url": "https://www.iowastatefair.org/entertainment/fair-schedule/",
       "source": "Iowa State Fair",
       "confidence": "主办方已核对"
+    },
+    {
+      "title": "Tortoise Tales: Live Animal Meet-and-Greet",
+      "when": "Aug 27 · 4:00–7:00 PM",
+      "location": "Reiman Gardens · Ames",
+      "url": "https://reimangardens.com/events",
+      "source": "Reiman Gardens",
+      "confidence": "All ages · 请核对入园门票与当日安排"
     },
     {
       "title": "Little Song Parent-Child Club",

@@ -85,8 +85,12 @@ def main() -> None:
     state_fair = []
     if today <= fair_end and today + timedelta(days=14) >= fair_start:
         state_fair.append({"title": "Iowa State Fair", "when": "Aug 13–23 · 大型活动，建议白天前往", "location": "Iowa State Fairgrounds · Des Moines", "url": "https://www.iowastatefair.org/entertainment/fair-schedule/", "source": "Iowa State Fair", "confidence": "主办方已核对"})
+    reiman_events = []
+    tortoise_date = datetime(2026, 8, 27).date()
+    if today <= tortoise_date <= today + timedelta(days=14):
+        reiman_events.append({"title": "Tortoise Tales: Live Animal Meet-and-Greet", "when": "Aug 27 · 4:00–7:00 PM", "location": "Reiman Gardens · Ames", "url": "https://reimangardens.com/events", "source": "Reiman Gardens", "confidence": "All ages · 请核对入园门票与当日安排"})
     prairie_flower = {"title": "Little Song Parent-Child Club", "when": "秋季学期 · 12 次每周课程；本期时间与报名待确认", "location": "Bethesda Lutheran Church · Ames", "url": "https://www.prairieflowercc.org/parent-child-club.html", "source": "Prairie Flower", "confidence": "需要提前报名 · 15 个月–3 岁 · $15/次"}
-    unique = {f"{e['source']}|{e['title']}|{e['when']}": e for e in discover + story + state_fair + [prairie_flower]}
+    unique = {f"{e['source']}|{e['title']}|{e['when']}": e for e in discover + story + state_fair + reiman_events + [prairie_flower]}
     OUT.write_text(json.dumps({"updatedAt": datetime.now(ZoneInfo("America/Chicago")).isoformat(timespec="seconds"), "windowDays": 14, "events": list(unique.values()), "sources": ["Discover Ames", "Story County", "Ames Parks & Recreation"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Synced {len(unique)} community event leads.")
 

@@ -1,6 +1,7 @@
 const activities = [
   { name: 'Toddler Storytime', type: '图书馆活动 · 今日推荐', category: 'library', drive: 7, place: 'indoor', free: true, featured: true, age: '幼儿友好', availability: 'calendarRequired', needsConfirmation: true, water: '待核实', note: '此活动仅在官方日历确认当天有场次时显示。', url: 'https://www.amespubliclibrary.org/events/list' },
   { name: 'Ames Public Library 儿童区', type: '安静室内备选', category: 'library', drive: 7, place: 'indoor', free: true, age: '0–3 岁友好', water: '待核实', note: '没有固定活动时也可读书、活动身体，是下雨天的低成本备选。', url: 'https://www.amespubliclibrary.org/' },
+  { name: 'Caterpillar Club', type: '户外亲子自然活动', category: 'community', drive: 20, place: 'outdoor', free: false, age: '官方建议 2–5 岁，成人陪同', availability: 'thursday', needsConfirmation: true, water: '待核实', note: '每周四 10:15，45 分钟；户外故事、自然探索和活动，无需报名。下雨照常进行，极端天气除外；需购买 Reiman Gardens 入园门票。', url: 'https://reimangardens.com/events' },
   { name: 'Labyrinth Coffee', type: '咖啡 + 儿童玩耍区', category: 'play', drive: 10, place: 'indoor', free: false, age: '低龄友好', water: '待核实', note: '有家长推荐的儿童玩耍区、玩具和 Lego；出发前核对当天开放时间。', url: 'https://www.labyrinthcoffeeames.org/' },
   { name: 'Play Pals Indoor Playground', type: '低龄室内玩耍', category: 'play', drive: 10, place: 'indoor', free: false, age: '5 岁及以下', needsConfirmation: true, water: '待核实', availability: 'schoolYearWeekdayMorning', note: 'Community Center 的玩具、滑梯和骑乘玩具；仅在 Labor Day 到 Memorial Day 之间的周一至周五 9–11 点显示。', url: 'https://www.cityofames.org/My-Government/Departments/Parks-and-Recreation/Facilities/Community-Center' },
   { name: 'Stuart Smith Park', type: '户外 Playground', category: 'park', drive: 10, place: 'outdoor', free: true, age: '新 playground，成人看护', water: '未列出饮水设施', note: '有 playground、开放草地和步行/自行车路径；市政府在 2025 年完成新 playground。', url: 'https://www.cityofames.org/My-Government/Departments/Parks-and-Recreation/Parks/Stuart-Smith-Park' },
@@ -88,7 +89,7 @@ async function loadLibraryCalendar() {
 
 function renderSpecialEvents() {
   const list = el('specialEventList');
-  list.innerHTML = specialEvents.length ? specialEvents.slice(0, 4).map(event => `<article class="special-event"><p class="eyebrow">${event.source} · ${event.confidence}</p><h3>${event.title}</h3><p>${event.when}${event.location ? ` · ${event.location}` : ''}</p><a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`).join('') : '<p class="special-empty">本周尚未找到适合 toddler 的特别活动。可以查看全部来源，或稍后再刷新。</p>';
+  list.innerHTML = specialEvents.length ? specialEvents.slice(0, 5).map(event => `<article class="special-event"><p class="eyebrow">${event.source} · ${event.confidence}</p><h3>${event.title}</h3><p>${event.when}${event.location ? ` · ${event.location}` : ''}</p><a href="${event.url}" target="_blank" rel="noreferrer">查看主办方信息 ↗</a></article>`).join('') : '<p class="special-empty">本周尚未找到适合 toddler 的特别活动。可以查看全部来源，或稍后再刷新。</p>';
 }
 
 async function loadSpecialEvents() {
@@ -114,6 +115,7 @@ function lastMondayOfMay(year) {
 
 function isAvailableToday(activity, now = new Date()) {
   if (activity.availability === 'calendarRequired') return libraryEvents.some(event => event.name === activity.name);
+  if (activity.availability === 'thursday') return now.getDay() === 4;
   if (activity.availability !== 'schoolYearWeekdayMorning') return true;
   const laborDay = firstMondayOfSeptember(now.getFullYear());
   const memorialDay = lastMondayOfMay(now.getFullYear());
