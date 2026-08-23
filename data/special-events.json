@@ -1,23 +1,7 @@
 {
-  "updatedAt": "2026-08-22T23:05:24-05:00",
+  "updatedAt": "2026-08-23T02:05:59-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Ames Main Street Farmers’ Market",
-      "when": "22 Aug 8:00 am - 12:30 pm",
-      "location": "Downtown Ames",
-      "url": "https://discoverames.com/events/ames-main-street-farmers-market-88/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-08-22",
-      "endDate": "2026-08-22",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
     {
       "title": "Art Walk: The Iowa Landscape",
       "when": "26 Aug 12:00 pm - 1:00 pm",
