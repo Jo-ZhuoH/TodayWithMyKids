@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-23T23:10:11-05:00",
+  "updatedAt": "2026-08-24T02:32:16-05:00",
   "windowDays": 120,
   "events": [
     {
@@ -29,6 +29,38 @@
       ]
     },
     {
+      "title": "Ames Main Street Farmers’ Market",
+      "when": "29 Aug 8:00 am - 12:30 pm",
+      "location": "Downtown Ames",
+      "url": "https://discoverames.com/events/ames-main-street-farmers-market-89/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-08-29",
+      "endDate": "2026-08-29",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Monarch Magic",
+      "when": "29 Aug 10:00 am - 1:00 pm",
+      "location": "Ada Hayden Heritage Park",
+      "url": "https://discoverames.com/events/monarch-magic-4/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-08-29",
+      "endDate": "2026-08-29",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
       "title": "Nature Playdates",
       "when": "AUG 25 2026 10:00 AM",
       "location": "McFarland Park",
@@ -38,22 +70,6 @@
       "startDate": "2026-08-25",
       "endDate": "2026-08-25",
       "ageGroups": [
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
-    {
-      "title": "Iowa State Fair",
-      "when": "Aug 13–23 · 大型活动，建议白天前往",
-      "location": "Iowa State Fairgrounds · Des Moines",
-      "url": "https://www.iowastatefair.org/entertainment/fair-schedule/",
-      "source": "Iowa State Fair",
-      "confidence": "主办方已核对",
-      "startDate": "2026-08-13",
-      "endDate": "2026-08-23",
-      "ageGroups": [
-        "baby",
         "toddler",
         "preschool",
         "schoolage"
