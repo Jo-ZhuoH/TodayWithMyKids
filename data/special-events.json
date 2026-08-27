@@ -1,20 +1,7 @@
 {
-  "updatedAt": "2026-08-26T19:51:15-05:00",
+  "updatedAt": "2026-08-27T09:18:52-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Art Walk: The Iowa Landscape",
-      "when": "26 Aug 12:00 pm - 1:00 pm",
-      "location": "Advanced Teaching Research Building",
-      "url": "https://discoverames.com/events/art-walk-the-iowa-landscape/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-08-26",
-      "endDate": "2026-08-26",
-      "ageGroups": [
-        "schoolage"
-      ]
-    },
     {
       "title": "Taste of Campustown",
       "when": "27 Aug 4:00 pm - 8:00 pm",
