@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-27T09:18:52-05:00",
+  "updatedAt": "2026-08-27T19:26:29-05:00",
   "windowDays": 120,
   "events": [
     {
@@ -12,6 +12,22 @@
       "startDate": "2026-08-27",
       "endDate": "2026-08-27",
       "ageGroups": [
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Road to Symmetry Tour",
+      "when": "28 Aug 8:00 pm",
+      "location": "Sam's Place",
+      "url": "https://discoverames.com/events/road-to-symmetry-tour/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-08-28",
+      "endDate": "2026-08-28",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
         "schoolage"
       ]
     },
