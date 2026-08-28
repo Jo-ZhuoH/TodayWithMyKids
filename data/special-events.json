@@ -1,20 +1,7 @@
 {
-  "updatedAt": "2026-08-27T19:26:29-05:00",
+  "updatedAt": "2026-08-28T10:28:43-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Taste of Campustown",
-      "when": "27 Aug 4:00 pm - 8:00 pm",
-      "location": "Campustown",
-      "url": "https://discoverames.com/events/taste-of-campustown/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-08-27",
-      "endDate": "2026-08-27",
-      "ageGroups": [
-        "schoolage"
-      ]
-    },
     {
       "title": "Road to Symmetry Tour",
       "when": "28 Aug 8:00 pm",
@@ -56,22 +43,6 @@
       "confidence": "亲子线索 · 请核对",
       "startDate": "2026-08-29",
       "endDate": "2026-08-29",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
-    {
-      "title": "Tortoise Tales: Live Animal Meet-and-Greet",
-      "when": "Aug 27 · 4:00–7:00 PM",
-      "location": "Reiman Gardens · Ames",
-      "url": "https://reimangardens.com/events",
-      "source": "Reiman Gardens",
-      "confidence": "All ages · 请核对入园门票与当日安排",
-      "startDate": "2026-08-27",
-      "endDate": "2026-08-27",
       "ageGroups": [
         "baby",
         "toddler",
