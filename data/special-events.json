@@ -1,23 +1,7 @@
 {
-  "updatedAt": "2026-08-28T20:46:48-05:00",
+  "updatedAt": "2026-08-29T05:12:13-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Road to Symmetry Tour",
-      "when": "28 Aug 8:00 pm",
-      "location": "Sam's Place",
-      "url": "https://discoverames.com/events/road-to-symmetry-tour/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-08-28",
-      "endDate": "2026-08-28",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
     {
       "title": "Ames Main Street Farmers’ Market",
       "when": "29 Aug 8:00 am - 12:30 pm",
@@ -39,6 +23,38 @@
       "when": "29 Aug 10:00 am - 1:00 pm",
       "location": "Ada Hayden Heritage Park",
       "url": "https://discoverames.com/events/monarch-magic-4/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-08-29",
+      "endDate": "2026-08-29",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Nevada Community Rodeo",
+      "when": "29 Aug 6:30 pm",
+      "location": "224 G Ave, Nevada, IA 50201, United States",
+      "url": "https://discoverames.com/events/nevada-community-rodeo-2/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-08-29",
+      "endDate": "2026-08-29",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Family Movie Night: Disney’s “A Bug’s Life”",
+      "when": "29 Aug 7:00 pm - 10:00 pm",
+      "location": "Reiman Gardens",
+      "url": "https://discoverames.com/events/family-movie-night-disneys-a-bugs-life/",
       "source": "Discover Ames",
       "confidence": "亲子线索 · 请核对",
       "startDate": "2026-08-29",
