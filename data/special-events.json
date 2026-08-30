@@ -1,71 +1,7 @@
 {
-  "updatedAt": "2026-08-29T18:23:58-05:00",
+  "updatedAt": "2026-08-30T00:31:12-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Ames Main Street Farmers’ Market",
-      "when": "29 Aug 8:00 am - 12:30 pm",
-      "location": "Downtown Ames",
-      "url": "https://discoverames.com/events/ames-main-street-farmers-market-89/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-08-29",
-      "endDate": "2026-08-29",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
-    {
-      "title": "Monarch Magic",
-      "when": "29 Aug 10:00 am - 1:00 pm",
-      "location": "Ada Hayden Heritage Park",
-      "url": "https://discoverames.com/events/monarch-magic-4/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-08-29",
-      "endDate": "2026-08-29",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
-    {
-      "title": "Nevada Community Rodeo",
-      "when": "29 Aug 6:30 pm",
-      "location": "224 G Ave, Nevada, IA 50201, United States",
-      "url": "https://discoverames.com/events/nevada-community-rodeo-2/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-08-29",
-      "endDate": "2026-08-29",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
-    {
-      "title": "Family Movie Night: Disney’s “A Bug’s Life”",
-      "when": "29 Aug 7:00 pm - 10:00 pm",
-      "location": "Reiman Gardens",
-      "url": "https://discoverames.com/events/family-movie-night-disneys-a-bugs-life/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-08-29",
-      "endDate": "2026-08-29",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
     {
       "title": "Family Movie Night: Disney's A Bug's Life",
       "when": "Aug 29 · 7:00–10:00 PM",
@@ -90,23 +26,6 @@
       "startDate": "2026-09-14",
       "endDate": "2026-09-14",
       "ageGroups": [
-        "schoolage"
-      ]
-    },
-    {
-      "title": "Butterfly Release",
-      "when": "Aug 29–30 · 11:00 AM 或 4:00 PM",
-      "location": "Center Grove Orchard · Cambridge",
-      "url": "https://centergroveorchard.com/pages/events/events-gqgphckl",
-      "source": "Center Grove Orchard",
-      "categoryLabel": "Fall Farm Fun",
-      "confidence": "亲子自然活动 · 需购票",
-      "startDate": "2026-08-29",
-      "endDate": "2026-08-30",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
         "schoolage"
       ]
     },
