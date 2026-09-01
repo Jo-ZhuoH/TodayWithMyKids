@@ -1,7 +1,67 @@
 {
-  "updatedAt": "2026-08-31T19:39:46-05:00",
+  "updatedAt": "2026-09-01T03:44:54-05:00",
   "windowDays": 120,
   "events": [
+    {
+      "title": "Curator’s Tour: Luis Jiménez: The Mythic Southwest",
+      "when": "01 Sep 5:30 pm - 6:30 pm",
+      "location": "Christian Petersen Art Museum",
+      "url": "https://discoverames.com/events/curators-tour-luis-jimenez-the-mythic-southwest/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-01",
+      "endDate": "2026-09-01",
+      "ageGroups": [
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Movie Night at Bandshell Park",
+      "when": "04 Sep 8:15 pm",
+      "location": "Bandshell Park",
+      "url": "https://discoverames.com/events/movie-night-at-bandshell-park-2/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-04",
+      "endDate": "2026-09-04",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Ames Main Street Farmers’ Market",
+      "when": "05 Sep 8:00 am - 12:30 pm",
+      "location": "Downtown Ames",
+      "url": "https://discoverames.com/events/ames-main-street-farmers-market-90/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-05",
+      "endDate": "2026-09-05",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Nature Playdates",
+      "when": "SEP 15 2026 10:00 AM",
+      "location": "McFarland Park",
+      "url": "https://www.mycountyparks.com/County/Story/Park/McFarland-Park/Events/29399/Nature-Playdates",
+      "source": "Story County",
+      "confidence": "主办方已核对",
+      "startDate": "2026-09-15",
+      "endDate": "2026-09-15",
+      "ageGroups": [
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
     {
       "title": "Family Movie Night: Disney's A Bug's Life",
       "when": "Aug 29 · 7:00–10:00 PM",
