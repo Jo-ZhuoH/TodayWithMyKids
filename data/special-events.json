@@ -1,20 +1,7 @@
 {
-  "updatedAt": "2026-09-01T23:43:15-05:00",
+  "updatedAt": "2026-09-02T06:27:17-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Curator’s Tour: Luis Jiménez: The Mythic Southwest",
-      "when": "01 Sep 5:30 pm - 6:30 pm",
-      "location": "Christian Petersen Art Museum",
-      "url": "https://discoverames.com/events/curators-tour-luis-jimenez-the-mythic-southwest/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-09-01",
-      "endDate": "2026-09-01",
-      "ageGroups": [
-        "schoolage"
-      ]
-    },
     {
       "title": "Movie Night at Bandshell Park",
       "when": "04 Sep 8:15 pm",
@@ -40,6 +27,22 @@
       "confidence": "亲子线索 · 请核对",
       "startDate": "2026-09-05",
       "endDate": "2026-09-05",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Tunes in the Trees",
+      "when": "08 Sep 5:00 pm - 8:00 pm",
+      "location": "Iowa Arboretum",
+      "url": "https://discoverames.com/events/tunes-in-the-trees-12/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-08",
+      "endDate": "2026-09-08",
       "ageGroups": [
         "baby",
         "toddler",
