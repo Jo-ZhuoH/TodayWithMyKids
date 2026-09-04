@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-03T23:41:51-05:00",
+  "updatedAt": "2026-09-04T06:26:52-05:00",
   "windowDays": 120,
   "events": [
     {
@@ -47,6 +47,19 @@
         "baby",
         "toddler",
         "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Cosmic Craft Night with Life Distilled",
+      "when": "10 Sep 6:30 pm - 8:00 pm",
+      "location": "Prairie Rose Needleworks",
+      "url": "https://discoverames.com/events/cosmic-craft-night-with-life-distilled/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-10",
+      "endDate": "2026-09-10",
+      "ageGroups": [
         "schoolage"
       ]
     },
