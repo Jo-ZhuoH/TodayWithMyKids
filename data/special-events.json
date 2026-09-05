@@ -1,23 +1,7 @@
 {
-  "updatedAt": "2026-09-05T05:42:53-05:00",
+  "updatedAt": "2026-09-05T15:27:54-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Ames Main Street Farmers’ Market",
-      "when": "05 Sep 8:00 am - 12:30 pm",
-      "location": "Downtown Ames",
-      "url": "https://discoverames.com/events/ames-main-street-farmers-market-90/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-09-05",
-      "endDate": "2026-09-05",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
     {
       "title": "Tunes in the Trees",
       "when": "08 Sep 5:00 pm - 8:00 pm",
