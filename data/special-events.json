@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-04T23:37:21-05:00",
+  "updatedAt": "2026-09-05T05:42:53-05:00",
   "windowDays": 120,
   "events": [
     {
@@ -44,6 +44,38 @@
       "startDate": "2026-09-10",
       "endDate": "2026-09-10",
       "ageGroups": [
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Bandshell Block Party",
+      "when": "11 Sep 5:30 pm",
+      "location": "Bandshell Park",
+      "url": "https://discoverames.com/events/bandshell-block-party/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-11",
+      "endDate": "2026-09-11",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Ames Main Street Farmers’ Market",
+      "when": "12 Sep 8:00 am - 12:30 pm",
+      "location": "Downtown Ames",
+      "url": "https://discoverames.com/events/ames-main-street-farmers-market-91/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-12",
+      "endDate": "2026-09-12",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
         "schoolage"
       ]
     },
