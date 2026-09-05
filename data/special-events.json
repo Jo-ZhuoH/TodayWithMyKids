@@ -1,23 +1,7 @@
 {
-  "updatedAt": "2026-09-04T18:04:42-05:00",
+  "updatedAt": "2026-09-04T23:37:21-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Movie Night at Bandshell Park",
-      "when": "04 Sep 8:15 pm",
-      "location": "Bandshell Park",
-      "url": "https://discoverames.com/events/movie-night-at-bandshell-park-2/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-09-04",
-      "endDate": "2026-09-04",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
     {
       "title": "Ames Main Street Farmers’ Market",
       "when": "05 Sep 8:00 am - 12:30 pm",
