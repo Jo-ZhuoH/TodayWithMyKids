@@ -1,23 +1,7 @@
 {
-  "updatedAt": "2026-09-08T23:50:34-05:00",
+  "updatedAt": "2026-09-09T06:32:40-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Tunes in the Trees",
-      "when": "08 Sep 5:00 pm - 8:00 pm",
-      "location": "Iowa Arboretum",
-      "url": "https://discoverames.com/events/tunes-in-the-trees-12/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-09-08",
-      "endDate": "2026-09-08",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
     {
       "title": "Cosmic Craft Night with Life Distilled",
       "when": "10 Sep 6:30 pm - 8:00 pm",
