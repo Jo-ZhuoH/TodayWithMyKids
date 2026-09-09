@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-09T11:44:24-05:00",
+  "updatedAt": "2026-09-09T16:00:03-05:00",
   "windowDays": 120,
   "events": [
     {
@@ -60,6 +60,19 @@
         "baby",
         "toddler",
         "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Fruity Felt Earrings Workshop",
+      "when": "14 Sep 6:30 pm - 8:30 pm",
+      "location": "Memorial Union Workspace",
+      "url": "https://discoverames.com/events/fruity-felt-earrings-workshop/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-14",
+      "endDate": "2026-09-14",
+      "ageGroups": [
         "schoolage"
       ]
     },
