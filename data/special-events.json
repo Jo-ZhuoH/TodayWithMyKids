@@ -1,36 +1,7 @@
 {
-  "updatedAt": "2026-09-10T23:48:42-05:00",
+  "updatedAt": "2026-09-11T06:30:51-05:00",
   "windowDays": 120,
   "events": [
-    {
-      "title": "Day Out with Thomas",
-      "when": "10 Sep 8:00 am - 6:00 pm",
-      "location": "",
-      "url": "https://discoverames.com/events/day-out-with-thomas-7/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-09-10",
-      "endDate": "2026-09-10",
-      "ageGroups": [
-        "baby",
-        "toddler",
-        "preschool",
-        "schoolage"
-      ]
-    },
-    {
-      "title": "Cosmic Craft Night with Life Distilled",
-      "when": "10 Sep 6:30 pm - 8:00 pm",
-      "location": "Prairie Rose Needleworks",
-      "url": "https://discoverames.com/events/cosmic-craft-night-with-life-distilled/",
-      "source": "Discover Ames",
-      "confidence": "亲子线索 · 请核对",
-      "startDate": "2026-09-10",
-      "endDate": "2026-09-10",
-      "ageGroups": [
-        "schoolage"
-      ]
-    },
     {
       "title": "Bandshell Block Party",
       "when": "11 Sep 5:30 pm",
@@ -92,6 +63,35 @@
         "baby",
         "toddler",
         "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Ames Golden K Kiwanis Inaugural Charity Golf Tournament",
+      "when": "14 Sep 8:00 am",
+      "location": "Coldwater Golf Links",
+      "url": "https://discoverames.com/events/ames-golden-k-kiwanis-inaugural-charity-golf-tournament/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-14",
+      "endDate": "2026-09-14",
+      "ageGroups": [
+        "baby",
+        "toddler",
+        "preschool",
+        "schoolage"
+      ]
+    },
+    {
+      "title": "Fruity Felt Earrings Workshop",
+      "when": "14 Sep 6:30 pm - 8:30 pm",
+      "location": "Memorial Union Workspace",
+      "url": "https://discoverames.com/events/fruity-felt-earrings-workshop/",
+      "source": "Discover Ames",
+      "confidence": "亲子线索 · 请核对",
+      "startDate": "2026-09-14",
+      "endDate": "2026-09-14",
+      "ageGroups": [
         "schoolage"
       ]
     },
